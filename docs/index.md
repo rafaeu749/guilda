@@ -1,14 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Horda RPGista - Guilda dos Aventureiros</title>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/guilda.js"></script>
-</head>
-<body>
-    <marquee>WIP - Vai dormir arrombadita!</marquee>
-	<div id="text"></div>
-    <img src="assets/SiteHoed.jpg" style="width:100%;" />
-</body>
-</html>
+﻿
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="js/guilda.js"></script>
+
+<marquee>WIP - Vai dormir arrombadita!</marquee>
+<div id="text"></div>
+<img src="assets/SiteHoed.jpg" style="width:100%;" />
