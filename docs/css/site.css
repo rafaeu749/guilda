@@ -1,17 +1,27 @@
 ﻿.record {
     min-height: 350px;
 }
+
+    .record .row:nth-of-type(odd) {
+        background: #e0e0e0;
+    }
+
+    .record .row:nth-of-type(even) {
+        background: #FFFFFF;
+    }
+
 .infoTitle {
-
 }
+
 .info {
-
 }
+
 .avatar {
     width: 200px;
     height: 300px;
     float: left;
 }
+
 .icone {
     width: 20px;
     height: 20px;

@@ -18,97 +18,53 @@
     <marquee><h1>Work In Progress</h1></marquee>
     <div id="records" class="container">
 
-        <div class="record rounded-lg shadow p-3 mb-5 bg-white rounded">
-            <img class="avatar rounded-lg" alt="Aventureiro" src="assets/belmor-ph.jpg" />
-            <div class="row">
-                <div class="col">Nome: <input class="border-0" value="Belmor" /></div>
-                <div class="col">Sexo: <input class="border-0" value="Masculino"/></div>
-            </div>
-            <div class="row">
-                <div class="col">Classes: Feiticeiro (12) | Clérigo (2)</div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Nível: 14</span>|<span>CdXP: 0/8</span>
+        <script type="text/template">
+            <div class="record rounded-lg shadow p-3 mb-5 bg-white rounded">
+                <img class="avatar rounded-lg" alt="Aventureiro" src="@imagem" />
+                <div class="row">
+                    <div class="col"><span>Nome: @nome</span></div>
+                    <div class="col"><span>Sexo: @sexo</span></div>
+                </div>
+                <div class="row">
+                    <div class="col">@classe</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>Nível: @nivel</span>|<span>CdXP: @xp</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>Casa: @casa_nome</span>
+                        <img class="icone" src="assets/@casa.png" />
+                    </div>
+                    <div class="col">
+                        <span>Facção: @faccao_nome - Renome @faccao_renome</span>
+                        <img class="icone" src="assets/@faccao.png" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>PdT: @pdts</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>Dinheiro: </span><span>@dinheiro</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span>Itens Mágicos: </span><span>@itens</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <span>Data: @update</span>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <span>Casa: Supérbia</span>
-                    <img class="icone" src="assets/superbia.png" />
-                </div>
-                <div class="col">
-                    <span>Facção: Harpista - Renome 1</span>
-                    <img class="icone" src="assets/harpistas.png" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>PdT: </span><span>1 Tier 1</span>|<span>1 Tier 2</span>|<span>1 Tier 3</span>|<span>1 Tier 4</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Dinheiro: </span><span>48 PO</span>|<span>50 PP</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Itens Mágicos: </span><span>Anel da Sorte</span>|<span>Pérola do Poder</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-right">
-                    <span>Data: 30/08/2019 - 14:15</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="record rounded-lg shadow p-3 mb-5 bg-white rounded">
-            <img class="avatar rounded-lg" alt="Aventureiro" src="assets/belmor-ph.jpg" />
-            <div class="row">
-                <div class="col">Nome: <input class="border-0" value="Belmor 2" /></div>
-                <div class="col">Sexo: <input class="border-0" value="Masculino" /></div>
-            </div>
-            <div class="row">
-                <div class="col">Classes: Feiticeiro (12) | Clérigo (2)</div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Nível: 14</span>|<span>CdXP: 0/8</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Casa: Supérbia</span>
-                    <img class="icone" src="assets/superbia.png" />
-                </div>
-                <div class="col">
-                    <span>Facção: Harpista - Renome 1</span>
-                    <img class="icone" src="assets/harpistas.png" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>PdT: </span><span>1 Tier 1</span>|<span>1 Tier 2</span>|<span>1 Tier 3</span>|<span>1 Tier 4</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Dinheiro: </span><span>48 PO</span>|<span>50 PP</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Itens Mágicos: </span><span>Anel da Sorte</span>|<span>Pérola do Poder</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-right">
-                    <span>Data: 30/08/2019 - 14:15</span>
-                </div>
-            </div>
-        </div>
+        </script>
 
     </div>
 </body>

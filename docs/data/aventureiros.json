@@ -1,8 +1,9 @@
-{
+﻿{
   "aventureiros": [
     {
       "id": 666,
       "nome": "Belmor",
+      "sexo": "M",
       "classes": [
         {
           "classe": "Sorcerer",
@@ -15,7 +16,7 @@
         }
       ],
       "nivel": 14,
-      "XP": 0,
+      "xp": 0,
       "casa": "superbia",
       "faccao": "harpistas",
       "renome": 1,
@@ -26,7 +27,11 @@
         "t4": 0
       },
       "dinheiro": {
-        "po": 48
+        "pp": 1,
+        "po": 10,
+        "ep": 20,
+        "sp": 100,
+        "cp": 1000
       },
       "itens_magicos": [
         {
@@ -36,7 +41,7 @@
           "descricao": "whiskas sache"
         },
         {
-          "item": "P�rola do Poder",
+          "item": "Pérola do Poder",
           "tier": 2,
           "tesouro": 20,
           "descricao": "whiskas sache 2",
@@ -48,47 +53,70 @@
     },
     {
       "id": 999,
-      "nome": "Belmor 2 - Clone do Mal",
+      "nome": "Davos",
+      "sexo": "M",
       "classes": [
         {
-          "classe": "Sorcerer",
-          "subclasse": "Storm",
-          "nivel": 12
-        },
-        {
-          "classe": "Cleric",
-          "nivel": 2
+          "classe": "Bard",
+          "subclasse": "Glamour",
+          "nivel": 16
         }
       ],
-      "nivel": 14,
-      "XP": 0,
+      "nivel": 16,
+      "xp": 3,
       "casa": "superbia",
-      "faccao": "harpistas",
-      "renome": 1,
+      "faccao": "",
+      "renome": 4,
       "tesouro": {
-        "t1": 1,
-        "t2": 20,
-        "t3": 2,
+        "t1": 0,
+        "t2": 0,
+        "t3": 24,
         "t4": 0
       },
       "dinheiro": {
-        "po": 48
+        "po": 48,
+        "ep": 193,
+        "pp": 240
       },
       "itens_magicos": [
         {
-          "item": "Anel da Sorte",
+          "item": "Chapéu de disfarce",
           "tier": 1,
           "tesouro": 10,
           "descricao": "whiskas sache"
         },
         {
-          "item": "P�rola do Poder",
-          "tier": 2,
-          "tesouro": 20,
-          "descricao": "whiskas sache 2",
-          "url": "https://www.dndbeyond.com/magic-items/pearl-of-power"
+          "item": "Mandolim de Canaith",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Instrumento das ilusões (triângulo)",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Manto da proteção",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Manto do Bardo",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Bracelete da Desefa",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
         }
       ],
+      "imagem": "https://cdn.discordapp.com/attachments/537414311908343818/620093976862785546/1d7e6a663f58d78ee61802130e832cb6.jpg",
       "update": "2019-09-09T05:10:54.081Z"
     }
   ]
