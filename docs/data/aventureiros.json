@@ -1,3 +1,44 @@
 {
-  "text": "Text supplied in the JSON file"
+  "nome": "Belmor",
+  "classes": [
+    {
+      "classe": "Sorcerer",
+      "subclasse": "Storm",
+      "nivel": 12
+    },
+    {
+      "classe": "Cleric",
+      "nivel": 2
+    }
+  ],
+  "nivel": 14,
+  "XP": 0,
+  "casa": "superbia",
+  "faccao": "harpistas",
+  "renome": 1,
+  "tesouro": {
+    "t1": 1,
+    "t2": 20,
+    "t3": 2,
+    "t4": 0
+  },
+  "dinheiro": {
+    "po": 48
+  },
+  "itens_magicos": [
+    {
+      "item": "Anel da Sorte",
+      "tier": 1,
+      "tesouro": 10,
+      "descricao": "whiskas sache"
+    },
+    {
+      "item": "Pérola do Poder",
+      "tier": 2,
+      "tesouro": 20,
+      "descricao": "whiskas sache 2",
+      "url": "https://www.dndbeyond.com/magic-items/pearl-of-power"
+    }
+  ],
+  "update": "2019-09-09T05:10:54.081Z"
 }
