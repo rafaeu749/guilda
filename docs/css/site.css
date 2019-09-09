@@ -1,0 +1,18 @@
+﻿.record {
+    min-height: 350px;
+}
+.infoTitle {
+
+}
+.info {
+
+}
+.avatar {
+    width: 200px;
+    height: 300px;
+    float: left;
+}
+.icone {
+    width: 20px;
+    height: 20px;
+}
