@@ -1,5 +1,6 @@
-﻿// Quadro de missões
-// 
+﻿// =================
+// Quadro de missões
+// =================
 var elements = document.getElementsByClassName('markup-2BOw-j isCompact-1hsne1')
 var input = document.getElementById('crtlcv') || document.createElement('input')
 input.id = 'crtlcv'
@@ -39,6 +40,110 @@ for(let i = 0; i < elements.length; i++) {
 			vagas = vagas == null ? "" : vagas[1].trim()
 			
 			finalText = `${horario}\t\t${estimativa}\t${mestre}\t${nome}\t${dificuldade}\t${vagas}\t\t${tier}\t${classificacao}\t\t${recompensa}`
+			
+			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
+		}
+	}
+    a()
+}
+
+// ======================
+// Quadro de aventureiros
+// ======================
+var elements = document.getElementsByClassName('markup-2BOw-j isCompact-1hsne1')
+var input = document.getElementById('crtlcv') || document.createElement('input')
+input.id = 'crtlcv'
+document.body.appendChild(input)
+for(let i = 0; i < elements.length; i++) { 
+	function a() { 
+		let e = elements[i]
+		e.onclick = function() { 
+			let finalText = "";
+			let msgText = e.innerText
+			
+			let tag = /tag:([^]+?)\n/gi.exec(msgText)
+			tag = tag == null ? "" : tag[1].trim()
+			
+			let nome = /nome:([^]+?)\n/gi.exec(msgText)
+			nome = nome == null ? "" : nome[1].trim()
+			
+			let raca = /ra[cç]a:([^]+?)\n/gi.exec(msgText)
+			raca = raca == null ? "" : raca[1].trim()
+			
+			let classe = /classe\(?s?\)?:([^]+?)\n/gi.exec(msgText)
+			classe = classe == null ? "" : classe[1].trim()
+			
+			let nivel = /(n[ií]vel|level):([^]+?)\n/gi.exec(msgText)
+			nivel = nivel == null ? "" : nivel[2].trim()
+			
+			let tier = /tier:([^]+?)\n/gi.exec(msgText)
+			tier = tier == null ? "" : tier[1].trim()
+			
+			let xp = /(cd)?xp:([^]+?)\n/gi.exec(msgText)
+			xp = xp == null ? "" : xp[2].trim()
+			
+			let casa = /casa:([^]+?)\n/gi.exec(msgText)
+			casa = casa == null ? "" : casa[1].trim()
+			
+			let sexo = /sexo:([^]+?)\n/gi.exec(msgText)
+			sexo = sexo == null ? "" : sexo[1].trim()
+			
+			let idade = /idade:([^]+?)\n/gi.exec(msgText)
+			idade = idade == null ? "" : idade[1].trim()
+			
+			let livro = /livros?:?([^]+?)\n/gi.exec(msgText)
+			livro = livro == null ? "" : livro[1].trim()
+			
+			
+			let platina = /(\d+)\s?pl/gi.exec(msgText)
+			platina = platina == null ? "" : platina[1].trim()
+			
+			let ouro = /(\d+)\s?po/gi.exec(msgText)
+			ouro = ouro == null ? "" : ouro[1].trim()
+			
+			let electro = /(\d+)\s?pe/gi.exec(msgText)
+			electro = electro == null ? "" : electro[1].trim()
+			
+			let prata = /(\d+)\s?pp/gi.exec(msgText)
+			prata = prata == null ? "" : prata[1].trim()
+			
+			let cobre = /(\d+)\s?pc/gi.exec(msgText)
+			cobre = cobre == null ? "" : cobre[1].trim()
+			
+			let pdt1 = /(\d+)[^]?t1/gi.exec(msgText)
+			pdt1 = pdt1 == null ? "" : pdt1[1].trim()
+			
+			let pdt2 = /pdt2:([^]+?)\n/gi.exec(msgText)
+			pdt2 = pdt2 == null ? "" : pdt2[1].trim()
+			
+			let pdt3 = /pdt3:([^]+?)\n/gi.exec(msgText)
+			pdt3 = pdt3 == null ? "" : pdt3[1].trim()
+			
+			let pdt4 = /pdt4:([^]+?)\n/gi.exec(msgText)
+			pdt4 = pdt4 == null ? "" : pdt4[1].trim()
+			
+			let faccao = /faccao:([^]+?)\n/gi.exec(msgText)
+			faccao = faccao == null ? "" : faccao[1].trim()
+			
+			let renome = /renome:([^]+?)\n/gi.exec(msgText)
+			renome = renome == null ? "" : renome[1].trim()
+			
+			let reputacao = /reputacao:([^]+?)\n/gi.exec(msgText)
+			reputacao = reputacao == null ? "" : reputacao[1].trim()
+			
+			let horas = /horas:([^]+?)\n/gi.exec(msgText)
+			horas = horas == null ? "" : horas[1].trim()
+			
+			let alinhamento = /alinhamento:([^]+?)\n/gi.exec(msgText)
+			alinhamento = alinhamento == null ? "" : alinhamento[1].trim()
+			
+			let tendencia = /tendencia:([^]+?)\n/gi.exec(msgText)
+			tendencia = tendencia == null ? "" : tendencia[1].trim()
+			
+			let update = /update:([^]+?)\n/gi.exec(msgText)
+			update = update == null ? "" : update[1].trim()
+			
+			finalText = `${tag}\t${nome}\t${raca}\t${classe}\t\t${nivel}\t\t\t\t\t\t\t${tier}\t${xp}\t${update}\t${casa}\t${sexo}\t${idade}\t${livro}\t${platina}\t${ouro}\t${electro}\t${prata}\t${cobre}\t${pdt1}\t${pdt2}\t${pdt3}\t${pdt4}\t${faccao}\t${renome}\t${reputacao}\t${horas}\t${alinhamento}\t${tendencia}`
 			
 			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
 		}
