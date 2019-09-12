@@ -5,14 +5,8 @@
     });
 });
 
-function getAventureiros() {
-
-}
-
-
 function showAventureiro(aventureiro) {
     if (!aventureiro) return;
-    console.log(aventureiro);
     try {
         var template = $('script[type="text/template"]').html();
 
@@ -21,7 +15,10 @@ function showAventureiro(aventureiro) {
         template = template.replace("@sexo", (aventureiro.sexo || "M") === "M" ? "Masculino" : "Feminino");
 
         if (aventureiro.classes) {
-            var classes = aventureiro.classes.map((classe) => {
+            var classes;
+            if (Array.isArray(aventureiro.classes) == false)
+                aventureiro.classes = [aventureiro.classes];
+            classes = aventureiro.classes.map((classe) => {
                 return classe.classe + " " + (classe.subclasse ? classe.subclasse + " " : "") + "(" + classe.nivel + ")";
             });
             template = template.replace("@classe", "Classe" + (classes.length > 1 ? "s: " : ": ") + classes.join("|"));

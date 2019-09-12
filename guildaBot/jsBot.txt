@@ -1,0 +1,47 @@
+﻿// Quadro de missões
+// 
+var elements = document.getElementsByClassName('markup-2BOw-j isCompact-1hsne1')
+var input = document.getElementById('crtlcv') || document.createElement('input')
+input.id = 'crtlcv'
+document.body.appendChild(input)
+for(let i = 0; i < elements.length; i++) { 
+	function a() { 
+		let e = elements[i]
+		e.onclick = function() { 
+			let finalText = "";
+			let msgText = e.innerText
+			
+			let mestre = /mestre:([^]+?)\n/gi.exec(msgText)
+			mestre = mestre == null ? "" : mestre[1].trim()
+			
+			let nome = /nome:([^]+?)\n/gi.exec(msgText)
+			nome = nome == null ? "" : nome[1].trim()
+			
+			let estimativa = /estimativa de tempo:([^]+?)\n/gi.exec(msgText)
+			estimativa = estimativa == null ? "" : estimativa[1].trim()
+				
+			let horario = /horário:([^]+?)\n/gi.exec(msgText)
+			horario = horario == null ? "" : horario[1].trim()
+			
+			let dificuldade = /dificuldade:([^]+?)\n/gi.exec(msgText)
+			dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
+			
+			let tier = /@tier (\d)/gi.exec(msgText)
+			tier = tier == null ? "" : tier[1].trim()
+			
+			let classificacao = /classificação:([^]+?)\n/gi.exec(msgText)
+			classificacao = classificacao == null ? "" : classificacao[1].trim()
+			
+			let recompensa = /recompensa:([^]+?)\n/gi.exec(msgText)
+			recompensa = recompensa == null ? "" : recompensa[1].trim()
+			
+			let vagas = /vagas:([^]+?)\n/gi.exec(msgText)
+			vagas = vagas == null ? "" : vagas[1].trim()
+			
+			finalText = `${horario}\t\t${estimativa}\t${mestre}\t${nome}\t${dificuldade}\t${vagas}\t\t${tier}\t${classificacao}\t\t${recompensa}`
+			
+			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
+		}
+	}
+    a()
+}

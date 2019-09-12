@@ -1,3 +1,1 @@
-﻿<script>
-	document.location = "index.hmtl";
-</script>
+﻿<script>document.location = "index.hmtl";</script>
