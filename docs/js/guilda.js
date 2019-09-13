@@ -1,9 +1,33 @@
 ﻿$().ready(function () {
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    // Buscar últimos dados e armazenar na memória
     $.getJSON("/guilda/data/aventureiros.json", function (data) {
     //$.getJSON("/data/aventureiros.json", function (data) {
-        data["aventureiros"].forEach(showAventureiro);
+        sessionStorage.setItem('data', JSON.stringify(data["aventureiros"]));
     });
+
+    $("#wip").html("Work In Progress - " + (new Date()));
+
+    // Delay de 1ms pra poder dar tempo de ler o arquivo
+    setTimeout(function () {
+        // Filtrar de acordo com o parametro
+        if (urlParams.has('pesquisa')) {
+            showAventureiros(urlParams.get('pesquisa'));
+        } else {
+            showAventureiros();
+        }
+    }, 10);
 });
+
+function showAventureiros(pesquisa) {
+    if (sessionStorage.has('data')) {
+        JSON.parse(sessionStorage.getItem('data'))
+            .filter(function (aventureiro) { return pesquisa === undefined || (aventureiro.nome !== undefined && aventureiro.nome.toLowerCase().search(pesquisa) > -1) })
+            .forEach(showAventureiro);
+    }
+}
 
 function showAventureiro(aventureiro) {
     if (!aventureiro) return;
@@ -18,7 +42,7 @@ function showAventureiro(aventureiro) {
             var classes;
             if (Array.isArray(aventureiro.classes) == false)
                 aventureiro.classes = [aventureiro.classes];
-            classes = aventureiro.classes.map((classe) => {
+            classes = aventureiro.classes.map(function (classe) {
                 return classe.classe + " " + (classe.subclasse ? classe.subclasse + " " : "") + "(" + classe.nivel + ")";
             });
             template = template.replace("@classe", "Classe" + (classes.length > 1 ? "s: " : ": ") + classes.join("|"));
@@ -32,7 +56,7 @@ function showAventureiro(aventureiro) {
         template = template.replace("@casa_nome", casaNome(aventureiro.casa));
         template = template.replace("@casa", aventureiro.casa);
 
-        
+
         template = template.replace("@faccao_nome", faccaoNome(aventureiro.faccao));
         template = template.replace("@faccao_renome", aventureiro.renome || 0);
         template = template.replace("@faccao", aventureiro.faccao || "");
@@ -61,7 +85,7 @@ function showAventureiro(aventureiro) {
         }
 
         if (aventureiro.itens_magicos) {
-            var itens = aventureiro.itens_magicos.map((item) => { return item.item; }).join("|");
+            var itens = aventureiro.itens_magicos.map(function (item) { return item.item; }).join("|");
             template = template.replace("@itens", itens);
         } else {
             template = template.replace("@itens", "-");
@@ -77,13 +101,22 @@ function showAventureiro(aventureiro) {
 
 function casaNome(casa) {
     return casa === "superbia" ? "Supérbia" :
-            casa === "tenacitas" ? "Tenácitas" :
-                casa === "unio" ? "Únio" :
-                    casa === "vigil" ? "Vigil" : "";
+        casa === "tenacitas" ? "Tenácitas" :
+            casa === "unio" ? "Únio" :
+                casa === "vigil" ? "Vigil" : "";
 }
 
 function faccaoNome(faccao) {
     return faccao === "harpistas" ? "Harpistas" :
         faccao === "enclave" ? "Enclave Esmeralda" :
-            faccao === "zhentarim" ? "Zhentarim" : "";
+            faccao === "ordem" ? "Ordem da Manopla" :
+                faccao === "alianca" ? "Aliança dos Lordes" :
+                    faccao === "zhentarim" ? "Zhentarim" : "";
 }
+
+
+// Handlers
+$('#frmPesquisa').submit(function (event) {
+    event.preventDefault();
+    window.location = "index.html?pesquisa=" + $("#txtPesquisa").val();
+});

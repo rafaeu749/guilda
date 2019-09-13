@@ -1,21 +1,38 @@
-﻿.menu {
+﻿.body {
+    padding-top: 70px !important;
+}
 
+.menu {
+    background: linear-gradient(to bottom, #b4110a 0%, #b4110a 80%, #880702 80%, #880702 100%);
+    color: #ffffff;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(240, 240, 240, .8) !important;
+    width: 100px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-light .navbar-nav :hover {
+    color: #ffffff !important;
+    background-color: #880702 !important;
+    font-weight: bold;
 }
 
 .record {
     min-height: 350px;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 90%, #002f43 90%, #002f43 100%);
 }
 
-    .record .row:nth-of-type(odd) {
-        background: #e0e0e0;
-    }
-
     .record .row:nth-of-type(even) {
-        background: #FFFFFF;
-    }
-
-    .record .row:last-child {
-        background: #247bf3;
+        background: #ebebeb;
     }
 
 .infoTitle {

@@ -39,7 +39,7 @@ for(let i = 0; i < elements.length; i++) {
 			let vagas = /vagas:([^]+?)\n/gi.exec(msgText)
 			vagas = vagas == null ? "" : vagas[1].trim()
 			
-			finalText = `${horario}\t\t${estimativa}\t${mestre}\t${nome}\t${dificuldade}\t${vagas}\t\t${tier}\t${classificacao}\t\t${recompensa}`
+			finalText = `${horario}\t\t${mestre}\t${nome}\t${dificuldade}\t${vagas}\t\t${tier}\t\t\t${recompensa}\t\t\t\t${estimativa}\t\t${classificacao}`
 			
 			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
 		}
