@@ -22,7 +22,7 @@
 });
 
 function showAventureiros(pesquisa) {
-    if (sessionStorage.has('data')) {
+    if (sessionStorage.getItem('data') != null) {
         JSON.parse(sessionStorage.getItem('data'))
             .filter(function (aventureiro) { return pesquisa === undefined || (aventureiro.nome !== undefined && aventureiro.nome.toLowerCase().search(pesquisa) > -1) })
             .forEach(showAventureiro);
