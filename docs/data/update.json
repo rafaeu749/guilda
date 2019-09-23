@@ -1,3 +1,121 @@
-{}
-
-23/09/2019 12:43:15
+{
+  "aventureiros": [
+    {
+      "id": 111,
+      "nome": "Belmor",
+      "sexo": "M",
+      "classes": [
+        {
+          "classe": "Sorcerer",
+          "subclasse": "Storm",
+          "nivel": 12
+        },
+        {
+          "classe": "Cleric",
+          "nivel": 2
+        }
+      ],
+      "nivel": 14,
+      "xp": 0,
+      "casa": "superbia",
+      "faccao": "harpistas",
+      "renome": 1,
+      "tesouro": {
+        "t1": 1,
+        "t2": 20,
+        "t3": 2,
+        "t4": 0
+      },
+      "dinheiro": {
+        "pp": 1,
+        "po": 10,
+        "ep": 20,
+        "sp": 100,
+        "cp": 1000
+      },
+      "itens_magicos": [
+        {
+          "item": "Anel da Sorte",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Pérola do Poder",
+          "tier": 2,
+          "tesouro": 20,
+          "descricao": "whiskas sache 2",
+          "url": "https://www.dndbeyond.com/magic-items/pearl-of-power"
+        }
+      ],
+      "imagem": "https://cdn.discordapp.com/attachments/537414311908343818/620084281812713473/Belmor.jpg",
+      "update": "2019-09-09T05:10:54.081Z"
+    },
+    {
+      "id": 222,
+      "nome": "Davos",
+      "sexo": "M",
+      "classes": {
+        "classe": "Bard",
+        "subclasse": "Glamour",
+        "nivel": 16
+      },
+      "nivel": 16,
+      "xp": 3,
+      "casa": "superbia",
+      "faccao": "enclave",
+      "renome": 4,
+      "tesouro": {
+        "t1": 0,
+        "t2": 0,
+        "t3": 24,
+        "t4": 0
+      },
+      "dinheiro": {
+        "po": 48,
+        "ep": 193,
+        "pp": 240
+      },
+      "itens_magicos": [
+        {
+          "item": "Chapéu de disfarce",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Mandolim de Canaith",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Instrumento das ilusões (triângulo)",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Manto da proteção",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Manto do Bardo",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        },
+        {
+          "item": "Bracelete da Desefa",
+          "tier": 1,
+          "tesouro": 10,
+          "descricao": "whiskas sache"
+        }
+      ],
+      "imagem": "https://cdn.discordapp.com/attachments/537414311908343818/620093976862785546/1d7e6a663f58d78ee61802130e832cb6.jpg",
+      "update": "2019-09-09T05:10:54.081Z"
+    }
+  ]
+}
