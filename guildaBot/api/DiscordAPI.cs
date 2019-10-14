@@ -1,13 +1,13 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using System;
+using System.Resources;
 using System.Threading.Tasks;
 
-namespace guildaBot {
+namespace GuildaRPG {
     class DiscordAPI
     {
         //public static void Main(string[] args) => new DiscordAPI().MainAsync().GetAwaiter().GetResult();
-        static readonly string TOKEN = "NjE3MDUzNzE0MDk1ODAwMzQx.XWmFNA.QcI-ypdYEGx-SqVaczrjIBAM2Kk";
 
         private DiscordSocketClient _client;
 
@@ -35,9 +35,7 @@ namespace guildaBot {
                     _client.MessageUpdated += OnMessageUpdated;
                     _client.MessageReceived += OnMessageReceived;
 
-                    
-
-                    await _client.LoginAsync(TokenType.Bot, TOKEN);
+                    await _client.LoginAsync(TokenType.Bot, Properties.Resources.DISCORD_API_TOKEN);
                     await _client.StartAsync();
 
                     await Task.Delay(-1);
