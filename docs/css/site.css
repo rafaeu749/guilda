@@ -29,10 +29,18 @@
 .record {
     min-height: 350px;
     background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 90%, #002f43 90%, #002f43 100%);
+    position: relative;
 }
 
     .record .row:nth-of-type(even) {
         background: #ebebeb;
+    }
+
+    .record .updateDate {
+        color: white;
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
     }
 
 .infoTitle {
