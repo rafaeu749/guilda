@@ -12,34 +12,90 @@ for(let i = 0; i < elements.length; i++) {
 			let finalText = "";
 			let msgText = e.innerText
 			
+			let horario = /hor[aá]rio:([^]+?)\n/gi.exec(msgText)
+			horario = horario == null ? "" : horario[1].trim()
+			// Data
+			finalText += `${horario}\t`
+			
+			// Hora
+			finalText += `\t`
+			
+			// Nome
 			let mestre = /mestre:([^]+?)\n/gi.exec(msgText)
 			mestre = mestre == null ? "" : mestre[1].trim()
+			finalText += `${mestre}\t`
 			
+			// Missão
 			let nome = /nome:([^]+?)\n/gi.exec(msgText)
 			nome = nome == null ? "" : nome[1].trim()
+			finalText += `${nome}\t`
 			
-			let estimativa = /estimativa de tempo:([^]+?)\n/gi.exec(msgText)
-			estimativa = estimativa == null ? "" : estimativa[1].trim()
-				
-			let horario = /horário:([^]+?)\n/gi.exec(msgText)
-			horario = horario == null ? "" : horario[1].trim()
-			
+			// Dificuldade
 			let dificuldade = /dificuldade:([^]+?)\n/gi.exec(msgText)
 			dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
+			finalText += `${dificuldade}\t`
 			
-			let tier = /@tier (\d)/gi.exec(msgText)
-			tier = tier == null ? "" : tier[1].trim()
-			
-			let classificacao = /classificação:([^]+?)\n/gi.exec(msgText)
-			classificacao = classificacao == null ? "" : classificacao[1].trim()
-			
-			let recompensa = /recompensa:([^]+?)\n/gi.exec(msgText)
-			recompensa = recompensa == null ? "" : recompensa[1].trim()
-			
+			// Vagas
 			let vagas = /vagas:([^]+?)\n/gi.exec(msgText)
 			vagas = vagas == null ? "" : vagas[1].trim()
+			finalText += `${vagas}\t`
 			
-			finalText = `${horario}\t\t${mestre}\t${nome}\t${dificuldade}\t${vagas}\t\t${tier}\t\t\t${recompensa}\t\t\t\t${estimativa}\t\t${classificacao}`
+			// Vagas Ocupadas
+			finalText += `\t`
+			
+			// Tier
+			let tier = /@tier (\d)/gi.exec(msgText)
+			tier = tier == null ? "" : tier[1].trim()
+			finalText += `${tier}\t`
+			
+			// Resultado
+			finalText += `\t`
+			
+			// XP
+			finalText += `\t`
+			
+			// PdT
+			let recompensa = /recompensa:([^]+?)\n/gi.exec(msgText)
+			recompensa = recompensa == null ? "" : recompensa[1].trim()
+			finalText += `${recompensa}\t`
+			
+			// PO
+			finalText += `\t`
+			
+			// Renome
+			finalText += `\t`
+			
+			// Mortes
+			finalText += `\t`
+			
+			// Estimativa
+			let estimativa = /estimativa de tempo:([^]+?)\n/gi.exec(msgText)
+			estimativa = estimativa == null ? "" : estimativa[1].trim()
+			finalText += `${estimativa}\t`
+			
+			// Tempo
+			finalText += `\t`
+			
+			// Classificação
+			let classificacao = /classificação:([^]+?)\n/gi.exec(msgText)
+			classificacao = classificacao == null ? "" : classificacao[1].trim()
+			finalText += `${classificacao}\t`
+			
+			// Supérbia
+			let superbia = (msgText.match(/sup[eé]rbia/gi) || []).length
+			finalText += `${superbia}\t`
+			
+			// Tenácitas
+			let tenacitas = (msgText.match(/ten[aá]citas/gi) || []).length
+			finalText += `${tenacitas}\t`
+			
+			// Únio
+			let unio = (msgText.match(/[uú]nio/gi) || []).length
+			finalText += `${unio}\t`
+			
+			// Vigil
+			let vigil = (msgText.match(/vigil/gi) || []).length
+			finalText += `${vigil}\t`
 			
 			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
 		}
