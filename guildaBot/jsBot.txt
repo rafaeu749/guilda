@@ -1,4 +1,4 @@
-﻿// =================
+// =================
 // Quadro de missões
 // =================
 var elements = document.getElementsByClassName('markup-2BOw-j isCompact-1hsne1')
@@ -14,14 +14,19 @@ for(let i = 0; i < elements.length; i++) {
 			
 			let horario = /hor[aá]rio:([^]+?)\n/gi.exec(msgText)
 			horario = horario == null ? "" : horario[1].trim()
-			// Data
-			finalText += `${horario}\t`
 			
+			// Data
+			let data = /(\d\d)[/]?(\d\d)/gi.exec(horario)
+			data = data == null ? "" : data[1].trim() + "/" + data[2].trim()
+			finalText += `${data}\t`
+						
 			// Hora
-			finalText += `\t`
+			let hora = /(\d\d)[:h]?(\d\d)/gi.exec(horario)
+			hora = hora == null ? "" : hora[1].trim() + ":" + hora[2].trim()
+			finalText += `${hora}\t`
 			
 			// Nome
-			let mestre = /mestre:([^]+?)\n/gi.exec(msgText)
+			let mestre = /mestr[ae]:([^]+?)\n/gi.exec(msgText)
 			mestre = mestre == null ? "" : mestre[1].trim()
 			finalText += `${mestre}\t`
 			
@@ -33,33 +38,47 @@ for(let i = 0; i < elements.length; i++) {
 			// Dificuldade
 			let dificuldade = /dificuldade:([^]+?)\n/gi.exec(msgText)
 			dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
+			
+			dificuldade = /verde|amarela|vermelha|preta/gi.exec(dificuldade)
+			dificuldade = dificuldade == null ? "" : dificuldade[0]
 			finalText += `${dificuldade}\t`
 			
-			// Vagas
-			let vagas = /vagas:([^]+?)\n/gi.exec(msgText)
-			vagas = vagas == null ? "" : vagas[1].trim()
-			finalText += `${vagas}\t`
 			
-			// Vagas Ocupadas
-			finalText += `\t`
+			let vagasTotal = /vagas:([^]+?)\n/gi.exec(msgText)
+			
+			// Vagas / Vagas Ocupadas
+			let vagas = /(\d)\/?(\d?)/gi.exec(vagasTotal)
+			let vagasOcupadas = vagas == null ? "" : vagas[1]
+			vagas = vagas == null ? "" : vagas[2]
+			finalText += `${vagas}\t`
+			finalText += `${vagasOcupadas}\t`
 			
 			// Tier
-			let tier = /@tier (\d)/gi.exec(msgText)
+			let tier = /@?tier (\d)/gi.exec(msgText)
 			tier = tier == null ? "" : tier[1].trim()
 			finalText += `${tier}\t`
 			
+			let linhaResultado = /^(falha|sucesso)([^]+?)$/gim.exec(msgText)
+			
 			// Resultado
-			finalText += `\t`
+			let resultado = /falha|sucesso/gi.exec(linhaResultado)
+			resultado = resultado == null ? "" : resultado[0].trim()
+			finalText += `${resultado}\t`
 			
 			// XP
-			finalText += `\t`
+			let xp = /(\d)\s?XP/gi.exec(linhaResultado)
+			xp = xp == null ? "" : xp[0].trim()
+			finalText += `${xp}\t`
 			
 			// PdT
-			let recompensa = /recompensa:([^]+?)\n/gi.exec(msgText)
-			recompensa = recompensa == null ? "" : recompensa[1].trim()
-			finalText += `${recompensa}\t`
+			let pdt = /(\d+)\s?pdt/gi.exec(msgText)
+			pdt = pdt == null ? "" : pdt[1].trim()
+			finalText += `${pdt}\t`
 			
 			// PO
+			let po = /(\d+)\s?PO/gi.exec(msgText)
+			po = po == null ? "" : po[1].trim()
+			finalText += `${po}\t`
 			finalText += `\t`
 			
 			// Renome
@@ -97,7 +116,7 @@ for(let i = 0; i < elements.length; i++) {
 			let vigil = (msgText.match(/vigil/gi) || []).length
 			finalText += `${vigil}\t`
 			
-			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
+			input.value = finalText; input.select(); document.execCommand('copy');input.blur();
 		}
 	}
     a()
