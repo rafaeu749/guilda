@@ -79,7 +79,6 @@ for(let i = 0; i < elements.length; i++) {
 			let po = /(\d+)\s?PO/gi.exec(msgText)
 			po = po == null ? "" : po[1].trim()
 			finalText += `${po}\t`
-			finalText += `\t`
 			
 			// Renome
 			finalText += `\t`
