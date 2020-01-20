@@ -38,6 +38,10 @@ for(let i = 0; i < elements.length; i++) {
 			// Dificuldade
 			let dificuldade = /dificuldade:([^]+?)\n/gi.exec(msgText)
 			dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
+			if (dificuldade == "") {
+				dificuldade = /periculosidade:([^]+?)\n/gi.exec(msgText)
+				dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
+			}
 			
 			dificuldade = /verde|amarela|vermelha|preta/gi.exec(dificuldade)
 			dificuldade = dificuldade == null ? "" : dificuldade[0]
