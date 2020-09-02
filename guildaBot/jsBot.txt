@@ -1,48 +1,56 @@
 // =================
 // Quadro de missões
 // =================
-var elements = document.getElementsByClassName('container-2LR0t2 container-3FojY8')
-let finalText = "";
-for(let i = 0; i < elements.length; i++) { 
-	let e = elements[i].getElementsByClassName("markup-2BOw-j containerCompact-3pGPJs compact-239Dlz")[0];
-		
-	let msgText = e.innerText;
+var parser = function fParse(msgText) {
+	let text = "";
 	
-	let horario = /hor[aá]rio:([^]+?)\n/gi.exec(msgText)
+	let downtime = /downtime/gi.exec(msgText)
+	let dinheiro = /dinheiro pago/gi.exec(msgText) || /dinheiro gasto/gi.exec(msgText)
+	if (downtime != null && dinheiro != null) return ""
+
+	// Horario
+	let horario = /dia:([^]+?)\n/gi.exec(msgText)
+	if (horario == null)
+		horario = /data:([^]+?)\n/gi.exec(msgText)
+	if (horario == null)
+		horario = /hor[aá]rio:?([^]+?)\n/gi.exec(msgText)
 	horario = horario == null ? "" : horario[1].trim()
-	
-	if (horario == "")
-		horario = /dia:([^]+?)\n/gi.exec(msgText)
 	
 	// Data
 	let data = /(\d\d)[/]?(\d\d)/gi.exec(horario)
 	data = data == null ? "" : data[1].trim() + "/" + data[2].trim()
-	finalText += `${data}\t`
+	text += `${data}\t`
+
+	horario = /hor[aá]rio:?([^]+?)\n/gi.exec(msgText)
+	horario = horario == null ? "" : horario[1].trim()
 				
 	// Hora
 	let hora = /(\d\d)[:h]?(\d\d)/gi.exec(horario)
 	hora = hora == null ? "" : hora[1].trim() + ":" + hora[2].trim()
-	finalText += `${hora}\t`
+	text += `${hora}\t`
 	
 	// Nome
 	let mestre = /mestr[ae]:([^]+?)\n/gi.exec(msgText)
 	mestre = mestre == null ? "" : mestre[1].trim()
-	finalText += `${mestre}\t`
+	text += `${mestre}\t`
 	
 	// Missão
-	let nome = /nome:([^]+?)\n/gi.exec(msgText)
+	let nome = /nome da miss[aã]o:([^]+?)\n/gi.exec(msgText)
+	if (nome == null) 
+		nome = /nome:([^]+?)\n/gi.exec(msgText)
 	if (nome == null) 
 		nome = /t[ií]tulo:([^]+?)\n/gi.exec(msgText)
 	nome = nome == null ? "" : nome[1].trim()
-	finalText += `${nome}\t`
+	text += `${nome}\t`
 	
 	// Dificuldade
 	let dificuldade = /dificuldade:([^]+?)\n/gi.exec(msgText)
+	if (dificuldade == null)
+		dificuldade = /periculosidade:([^]+?)\n/gi.exec(msgText)
 	dificuldade = dificuldade == null ? "" : dificuldade[1].trim()
-	
 	dificuldade = /verde|amarela|vermelha|preta/gi.exec(dificuldade)
 	dificuldade = dificuldade == null ? "" : dificuldade[0]
-	finalText += `${dificuldade}\t`
+	text += `${dificuldade}\t`
 	
 	
 	let vagasTotal = /vagas:([^]+?)\n/gi.exec(msgText)
@@ -51,53 +59,53 @@ for(let i = 0; i < elements.length; i++) {
 	let vagas = /(\d)\/?(\d?)/gi.exec(vagasTotal)
 	let vagasOcupadas = vagas == null ? "" : vagas[1]
 	vagas = vagas == null ? "" : vagas[2]
-	finalText += `${vagas}\t`
-	finalText += `${vagasOcupadas}\t`
+	text += `${vagas}\t`
+	text += `${vagasOcupadas}\t`
 	
 	// Tier
-	let tier = /@?tier (\d)/gi.exec(msgText)
+	let tier = /@?tier:?\s?(\d)/gi.exec(msgText)
 	tier = tier == null ? "" : tier[1].trim()
-	finalText += `${tier}\t`
+	text += `${tier}\t`
 	
-	let linhaResultado = /^(falha|sucesso)([^]+?)$/gim.exec(msgText)
+	let linhaResultado = /(falha|sucesso)/gi.exec(msgText)
 	
 	// Resultado
-	let resultado = /falha|sucesso/gi.exec(linhaResultado)
+	let resultado = /falha|sucesso/gi.exec(msgText)
 	resultado = resultado == null ? "" : resultado[0].trim()
-	finalText += `${resultado}\t`
+	text += `${resultado}\t`
 	
 	// XP
-	let xp = /(\d+)\s?c?d?xp/gi.exec(linhaResultado)
+	let xp = /(\d+)\s?c?d?xp/gi.exec(msgText)
 	xp = xp == null ? "" : xp[1].trim()
-	finalText += `${xp}\t`
+	text += `${xp}\t`
 	
 	// PdT
 	let pdt = /(\d+)\s?pdt/gi.exec(msgText)
 	pdt = pdt == null ? "" : pdt[1].trim()
-	finalText += `${pdt}\t`
+	text += `${pdt}\t`
 	
 	// PO
 	let po = /(\d+)\s?po/gi.exec(msgText)
 	po = po == null ? "" : po[1].trim()
-	finalText += `${po}\t`
+	text += `${po}\t`
 	
 	// Renome
 	let renome = /(-?\d+)\s?renome/gi.exec(msgText)
 	renome = renome == null ? "" : renome[1].trim()
-	finalText += `${renome}\t`
+	text += `${renome}\t`
 	
 	// Mortes
-	finalText += `\t`
+	text += `\t`
 	
 	// Estimativa
 	let estimativa = /estimativa de tempo:([^]+?)\n/gi.exec(msgText)
 	estimativa = estimativa == null ? "" : estimativa[1].trim()
-	finalText += `${estimativa}\t`
+	text += `${estimativa}\t`
 	
 	// Tempo
 	let duracao = /dura[cç][aã]o:(\d+)/gi.exec(msgText)
 	duracao = duracao == null ? "" : duracao[1].trim()
-	finalText += `${duracao}\t`
+	text += `${duracao}\t`
 	
 	// Classificação
 	let classificacao = /classificação:([^]+?)\n/gi.exec(msgText)
@@ -105,127 +113,37 @@ for(let i = 0; i < elements.length; i++) {
 	
 	classificacao = /(Livre|\d\d)/gi.exec(classificacao)
 	classificacao = classificacao == null ? "" : classificacao[1].trim()
-	finalText += `${classificacao}\t`
+	text += `${classificacao}\t`
+	
+	// Validacao de linha vazia
+	if (text.trim() == "") return ""
 	
 	// Supérbia
 	let superbia = (msgText.match(/sup[eé]rbia/gi) || []).length
-	finalText += `${superbia}\t`
+	text += `${superbia}\t`
 	
 	// Tenácitas
 	let tenacitas = (msgText.match(/ten[aá]citas/gi) || []).length
-	finalText += `${tenacitas}\t`
+	text += `${tenacitas}\t`
 	
 	// Únio
 	let unio = (msgText.match(/[uú]nio/gi) || []).length
-	finalText += `${unio}\t`
+	text += `${unio}\t`
 	
 	// Vigil
 	let vigil = (msgText.match(/vigil/gi) || []).length
-	finalText += `${vigil}\t`
+	text += `${vigil}\t`
 	
-	finalText += `\n`
+	text += `\n`
+	
+	return text
 }
 
-// ======================
-// Quadro de aventureiros
-// ======================
-var elements = document.getElementsByClassName('markup-2BOw-j isCompact-1hsne1')
-var input = document.getElementById('crtlcv') || document.createElement('input')
-input.id = 'crtlcv'
-document.body.appendChild(input)
+const MSG_CONTAINER = "message-2qnXI6 groupStart-23k01U wrapper-2a6GCs compact-T3H92H zalgo-jN1Ica"
+const MSG_TEXT_CONTAINER = "markup-2BOw-j messageContent-2qWWxC"
+var elements = document.getElementsByClassName(MSG_CONTAINER)
+let finalText = ""
 for(let i = 0; i < elements.length; i++) { 
-	function a() { 
-		let e = elements[i]
-		e.onclick = function() { 
-			let finalText = "";
-			let msgText = e.innerText
-			
-			let tag = /tag:([^]+?)\n/gi.exec(msgText)
-			tag = tag == null ? "" : tag[1].trim()
-			
-			let nome = /nome:([^]+?)\n/gi.exec(msgText)
-			nome = nome == null ? "" : nome[1].trim()
-			
-			let raca = /ra[cç]a:([^]+?)\n/gi.exec(msgText)
-			raca = raca == null ? "" : raca[1].trim()
-			
-			let classe = /classe\(?s?\)?:([^]+?)\n/gi.exec(msgText)
-			classe = classe == null ? "" : classe[1].trim()
-			
-			let nivel = /(n[ií]vel|level):([^]+?)\n/gi.exec(msgText)
-			nivel = nivel == null ? "" : nivel[2].trim()
-			
-			let tier = /tier:([^]+?)\n/gi.exec(msgText)
-			tier = tier == null ? "" : tier[1].trim()
-			
-			let xp = /(cd)?xp:([^]+?)\n/gi.exec(msgText)
-			xp = xp == null ? "" : xp[2].trim()
-			
-			let casa = /casa:([^]+?)\n/gi.exec(msgText)
-			casa = casa == null ? "" : casa[1].trim()
-			
-			let sexo = /sexo:([^]+?)\n/gi.exec(msgText)
-			sexo = sexo == null ? "" : sexo[1].trim()
-			
-			let idade = /idade:([^]+?)\n/gi.exec(msgText)
-			idade = idade == null ? "" : idade[1].trim()
-			
-			let livro = /livros?:?([^]+?)\n/gi.exec(msgText)
-			livro = livro == null ? "" : livro[1].trim()
-			
-			
-			let platina = /(\d+)\s?pl/gi.exec(msgText)
-			platina = platina == null ? "" : platina[1].trim()
-			
-			let ouro = /(\d+)\s?po/gi.exec(msgText)
-			ouro = ouro == null ? "" : ouro[1].trim()
-			
-			let electro = /(\d+)\s?pe/gi.exec(msgText)
-			electro = electro == null ? "" : electro[1].trim()
-			
-			let prata = /(\d+)\s?pp/gi.exec(msgText)
-			prata = prata == null ? "" : prata[1].trim()
-			
-			let cobre = /(\d+)\s?pc/gi.exec(msgText)
-			cobre = cobre == null ? "" : cobre[1].trim()
-			
-			let pdt1 = /(\d+)[^]?t1/gi.exec(msgText)
-			pdt1 = pdt1 == null ? "" : pdt1[1].trim()
-			
-			let pdt2 = /pdt2:([^]+?)\n/gi.exec(msgText)
-			pdt2 = pdt2 == null ? "" : pdt2[1].trim()
-			
-			let pdt3 = /pdt3:([^]+?)\n/gi.exec(msgText)
-			pdt3 = pdt3 == null ? "" : pdt3[1].trim()
-			
-			let pdt4 = /pdt4:([^]+?)\n/gi.exec(msgText)
-			pdt4 = pdt4 == null ? "" : pdt4[1].trim()
-			
-			let faccao = /faccao:([^]+?)\n/gi.exec(msgText)
-			faccao = faccao == null ? "" : faccao[1].trim()
-			
-			let renome = /renome:([^]+?)\n/gi.exec(msgText)
-			renome = renome == null ? "" : renome[1].trim()
-			
-			let reputacao = /reputacao:([^]+?)\n/gi.exec(msgText)
-			reputacao = reputacao == null ? "" : reputacao[1].trim()
-			
-			let horas = /horas:([^]+?)\n/gi.exec(msgText)
-			horas = horas == null ? "" : horas[1].trim()
-			
-			let alinhamento = /alinhamento:([^]+?)\n/gi.exec(msgText)
-			alinhamento = alinhamento == null ? "" : alinhamento[1].trim()
-			
-			let tendencia = /tendencia:([^]+?)\n/gi.exec(msgText)
-			tendencia = tendencia == null ? "" : tendencia[1].trim()
-			
-			let update = /update:([^]+?)\n/gi.exec(msgText)
-			update = update == null ? "" : update[1].trim()
-			
-			finalText = `${tag}\t${nome}\t${raca}\t${classe}\t\t${nivel}\t\t\t\t\t\t\t${tier}\t${xp}\t${update}\t${casa}\t${sexo}\t${idade}\t${livro}\t${platina}\t${ouro}\t${electro}\t${prata}\t${cobre}\t${pdt1}\t${pdt2}\t${pdt3}\t${pdt4}\t${faccao}\t${renome}\t${reputacao}\t${horas}\t${alinhamento}\t${tendencia}`
-			
-			input.value = finalText; input.select(); document.execCommand('copy'); input.blur();
-		}
-	}
-    a()
+	let e = elements[i].getElementsByClassName(MSG_TEXT_CONTAINER)[0]
+	finalText += parser(e.innerText)
 }
